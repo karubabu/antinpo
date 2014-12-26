@@ -3,9 +3,9 @@ Plugin.create(:antinpo) do
 	on_appear do |ms|
 		ms.each do |m|
 			if m.message.to_me?()
-				if m.message.to_s =~ /ちんぽ/ and m[:created] > DEFINED_TIME and !m.retweet? then
+				if m.message.to_s =~ /^ちんぽ/ and m[:created] > DEFINED_TIME and !m.retweet? then
 					exptmp = m.message.to_s
-					exptmp =~ s/ちんぽ/なんで/ #この辺りが間違ってるぽいけれどperlのs///ノような演算ってどうやるの
+					exptmp =　exptmp.gsub(/^ちんぽ$/){'なんで'}
 					Service.primary.post(:message => "#{"@" + m.user.idname + ' ' + exptmp + "?"*rand(40)}", :replyto => m)
 					m.message.favorite(true)
 				end
