@@ -4,7 +4,7 @@ Plugin.create(:antinpo) do
 		ms.each do |m|
 			if m.message.to_me?()
 				if m.message.to_s =~ /^ちんぽ/ and m[:created] > DEFINED_TIME and !m.retweet? then
-					exptmp = m.message.to_s.gsub(/ちんぽ/,"なんで")
+					exptmp = m.gsub(/ちんぽ/,"なんで")
 					Service.primary.post(:message => "#{"@" + m.user.idname + ' ' + exptmp + "?"*rand(40)}", :replyto => m)
 					m.message.favorite(true)
 				end
