@@ -6,9 +6,10 @@ Plugin.create(:antinpo) do
 			if m.message.to_me?()
 				if m.message.to_s =~ /ちんぽ/ and m[:created] > DEFINED_TIME and !m.retweet? then
 					exptmp = m.message.to_show()
-					exptmp = exptmp.gsub(/@karubabu /,'')
+					exptmp = exptmp.gsub(/@.+ /,'')
 					exptmp = exptmp.gsub(/ちんぽ/,'なんで')
-					Service.primary.post(:message => "#{"@" + m.user.idname + ' ' + exptmp + "？"*rand(40)}", :replyto => m)
+					exptmp = exptmp.gsub(/!|！/,'？')
+					Service.primary.post(:message => "#{"@" + m.user.idname + ' ' + exptmp + "？"*rand(30)}", :replyto => m)
 					m.message.favorite(true)
 				end
 			end
