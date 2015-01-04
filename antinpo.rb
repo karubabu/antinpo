@@ -10,6 +10,7 @@ Plugin.create(:antinpo) do
 					if exptmp =~ /ちんぽも|ﾌﾞﾘ|ﾘｭﾘｭﾘｭ|ﾌﾞﾂ|ﾁﾁ|ﾐﾘ|([うおあｕｏａ]){3,}?|[!！]{10,}/ and m[:created] > DEFINED_TIME and !m.retweet? then
 					elsif exptmp =~ /ちんぽ/ and m[:created] > DEFINED_TIME and !m.retweet? then
 						exptmp = exptmp.gsub(/@.*\s/,'')
+						exptmp = exptmp.gsub(/[\(（]@.*[\)）]/,'')
 						exptmp = exptmp.gsub(/ちんぽ/,'なんで')
 						exptmp = exptmp.gsub(/!|！/,'？')
 						Service.primary.post(:message => "#{"@" + m.user.idname + ' ' + exptmp + "？"*rand(30)}", :replyto => m)
