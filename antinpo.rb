@@ -14,7 +14,7 @@ Plugin.create(:antinpo) do
 					exptmp = exptmp.gsub(/ちんぽも?/,'なんで')
 					exptmp = exptmp.gsub(/tinpo|cinpo/,'nande')
 					exptmp = exptmp.gsub(/ｔｉｎｐｏ|ｃｉｎｐｏ/,'ｎａｎｄｅ')
-					exptmp = exptmp.gsub(/ちんで?/,'なん')
+					exptmp = exptmp.gsub(/ちん[でも]*?/,'なん')
 					exptmp = exptmp.gsub(/ㄘんで?/,'なん')
 					if exptmp =~ /ﾌﾞﾘ|ﾘｭﾘｭﾘｭ|ﾌﾞﾂ|ﾁﾁ|ﾐﾘ|([うおあｕｏａ]){5,}?|[!！]{10,}/ and m[:created] > DEFINED_TIME and !m.retweet? then
 					elsif exptmp =~ /なんで|なん([.+^で])?|(なん){2,}|[nadeｎａｄｅ]{4,}/ and m[:created] > DEFINED_TIME and !m.retweet? then
