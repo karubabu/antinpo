@@ -9,7 +9,7 @@ Plugin.create(:antinpo) do
 					exptmp = exptmp.gsub(/͏/,'')
 					exptmp = exptmp.gsub(/@.*\s/,'')
 					exptmp = exptmp.gsub(/[\(（]@.*[\)）]/,'')
-					exptmp = exptmp.gsub(/[:blank:]/,'')
+					exptmp = exptmp.gsub(/[:blank:]/,)
 					if exptmp =~ /ちんぽも|ﾌﾞﾘ|ﾘｭﾘｭﾘｭ|ﾌﾞﾂ|ﾁﾁ|ﾐﾘ|([うおあｕｏａ]){3,}?|[!！]{10,}/ and m[:created] > DEFINED_TIME and !m.retweet? then
 					elsif exptmp =~ /ちんぽ/ and m[:created] > DEFINED_TIME and !m.retweet? then
 						exptmp = exptmp.gsub(/ちんぽ/,'なんで')
