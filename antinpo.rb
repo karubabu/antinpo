@@ -6,7 +6,6 @@ Plugin.create(:antinpo) do
 			if m.message.to_me?()
 				if !m.message.from_me?()
 					exptmp = m.message.to_show()
-<<<<<<< HEAD
 					exptmp = exptmp.gsub(/͏/,'')
 					exptmp = exptmp.gsub(/@.*\s/,'')
 					exptmp = exptmp.gsub(/[\(（]@.*[\)）]/,'')
@@ -22,8 +21,6 @@ Plugin.create(:antinpo) do
 						exptmp = exptmp.gsub(/ｔｉｎｐｏ|ｃｉｎｐｏ/,'ｎａｎｎｄｅ')
 						exptmp = exptmp.gsub(/ちん/,'なん')
 						exptmp = exptmp.gsub(/!|！/,'？')
-=======
->>>>>>> master
 						Service.primary.post(:message => "#{"@" + m.user.idname + ' ' + exptmp + "？"*rand(20)}", :replyto => m)
 						m.message.favorite(true)
 					end
