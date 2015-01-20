@@ -6,10 +6,10 @@ Plugin.create(:antinpo) do
 			if m.message.to_me?()
 				if !m.message.from_me?()
 					exptmp = m.message.to_show()
-					exptmp = exptmp.gsub(/͏/,'')
 					exptmp = exptmp.gsub(/@.*\s/,'')
-					exptmp = exptmp.gsub(/[\(（]@.*[\)）]/,'')
 					exptmp = exptmp.gsub(/\p{blank}+/,'')#ここが機能してくれないなんで
+					exptmp = exptmp.gsub(/[\(（]@.*[\)）]/,'')
+					exptmp = exptmp.gsub(/͏/,'')
 					if exptmp =~ /ちんぽも|ﾌﾞﾘ|ﾘｭﾘｭﾘｭ|ﾌﾞﾂ|ﾁﾁ|ﾐﾘ|([うおあｕｏａ]){3,}?|[!！]{10,}/ and m[:created] > DEFINED_TIME and !m.retweet? then
 					elsif exptmp =~ /ちんぽ/ and m[:created] > DEFINED_TIME and !m.retweet? then
 						exptmp = exptmp.gsub(/ちんぽ/,'なんで')
