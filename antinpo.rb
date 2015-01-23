@@ -14,6 +14,8 @@ Plugin.create(:antinpo) do
 					elsif exptmp =~ /ち(\p{blank}*?)ん(\p{blank}*?)ぽ|チ(\p{blank}*?)ン(\p{blank}*?)ポ/ and m[:created] > DEFINED_TIME and !m.retweet? then
 						exptmp = exptmp.gsub(/ち(\p{blank}*?)ん(\p{blank}*?)ぽ/,'な' + $1 +'ん' + $2 + 'で')
 						exptmp = exptmp.gsub(/チ(\p{blank}*?)ン(\p{blank}*?)ポ/,'ナ' + $1 +'ン' + $2 + 'デ')
+						exptmp = exptmp.gsub(/ぽ/,'で')
+						exptmp = exptmp.gsub(/ポ/,'デ')
 						exptmp = exptmp.gsub(/!|！/,'？')
 						Service.primary.post(:message => "#{"@" + m.user.idname + ' ' + exptmp + "？"*rand(20)}", :replyto => m)
 						m.message.favorite(true)
