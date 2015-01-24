@@ -21,7 +21,7 @@ Plugin.create(:antinpo) do
 						m.message.favorite(true)
 					elsif exptmp =~ /(チン|ㄘん|ちん|ﾁﾝ){2,}|(チン|ㄘん|ちん|ﾁﾝ)([^でデﾃﾞ]+?)|[cｃtinpoｔｉｎｐｏ]{5,}/ and m[:created] > DEFINED_TIME and !m.retweet? then
 						exptmp = exptmp.gsub(/tinpo|chinpo|chinpo/,'nande')
-						exptmp = exptmp.gsub(/ｔｉｎｐｏ|ｃｉｎｐｏ|chinpo|ｃｈｉｎｐｏ/,'ｎａｎｎｄｅ')
+						exptmp = exptmp.gsub(/ｔｉｎｐｏ|ｃｉｎｐｏ|ｃｈｉｎｐｏ/,'ｎａｎｎｄｅ')
 						exptmp = exptmp.gsub(/ちん/,'なん')
 						exptmp = exptmp.gsub(/ㄘん/,'なん')
 						exptmp = exptmp.gsub(/チン/,'ナン')
