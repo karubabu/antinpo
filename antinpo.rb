@@ -23,6 +23,7 @@ Plugin.create(:antinpo) do
 						exptmp = exptmp.gsub(/tinpo|cinpo/,'nande')
 						exptmp = exptmp.gsub(/ｔｉｎｐｏ|ｃｉｎｐｏ/,'ｎａｎｎｄｅ')
 						exptmp = exptmp.gsub(/ちん/,'なん')
+						exptmp = exptmp.gsub(/ㄘん/,'なん')
 						exptmp = exptmp.gsub(/ぽ/,'で')
 						exptmp = exptmp.gsub(/ポ/,'デ')
 						exptmp = exptmp.gsub(/チン/,'ナン')
