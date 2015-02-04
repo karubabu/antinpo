@@ -12,10 +12,9 @@ Plugin.create(:antinpo) do
 					exptmp = exptmp.gsub(/\p{blank}+?/,'')
 					exptmp = exptmp.gsub(/͏/,'')
 					if exptmp =~ /チンポモ|ちんぽも|ﾌﾞﾘ|ﾘｭﾘｭﾘｭ|ﾌﾞﾂ|ﾁﾁ|ﾐﾘ|([うおあｕｏａ]){3,}?|[!！]{10,}/ and m[:created] > DEFINED_TIME and !m.retweet? then
-					elsif exptmp =~ /ち(\p{blank}*?)ん(\p{blank}*?)ぽ|チンポ|ﾁﾝﾎﾟ/ and m[:created] > DEFINED_TIME and !m.retweet? then
+					elsif exptmp =~ /ち(\p{blank}*?)ん(\p{blank}*?)ぽ|チ(\p{blank}*?)ン(\p{blank}*?)ポ|ﾁ(\p{blank}*?)ﾝ(\p{blank}*?)ﾎﾟ/ and m[:created] > DEFINED_TIME and !m.retweet? then
 						exptmp = exptmp.gsub(/ち(\p{blank}*?)ん(\p{blank}*?)ぽ/,'な' + $1 +'ん' + $2 + 'で')
 						exptmp = exptmp.gsub(/チ(\p{blank}*?)ン(\p{blank}*?)ポ/,'ナ' + $1 +'ン' + $2 + 'デ')
-						exptmp = exptmp.gsub(/ﾁ(\p{blank}*?)ﾝ(\p{blank}*?)ﾎﾟ/,'ﾅ' + $1 +'ﾝ' + $2 + 'ﾃﾞ')
 						exptmp = exptmp.gsub(/ぽ/,'で')
 						exptmp = exptmp.gsub(/ポ/,'デ')
 						exptmp = exptmp.gsub(/!|！/,'？')
