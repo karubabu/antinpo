@@ -7,7 +7,7 @@ Plugin.create(:antinpo) do
 				if !m.message.from_me?()
 					exptmp = m.message.to_show()
 					exptmp = exptmp.gsub(/[\(（].*?@.*?[\)）]/,'')
-					exptmp = exptmp.gsub(/@.*?\p{blank}?/,'')
+					exptmp = exptmp.gsub(/@.+?\p{blank}?/,'')
 					#exptmp = exptmp.gsub(/@[\p{alnum}_]*?\p{blank}?/,'')
 					exptmp = exptmp.gsub(/\p{blank}+?/,'')
 					exptmp = exptmp.gsub(/͏/,'')
