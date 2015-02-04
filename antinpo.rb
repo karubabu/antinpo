@@ -7,7 +7,8 @@ Plugin.create(:antinpo) do
 				if !m.message.from_me?()
 					exptmp = m.message.to_show()
 					exptmp = exptmp.gsub(/[\(（].*?@.*?[\)）]/,'')
-					exptmp = exptmp.gsub(/@.*?\p{blank}/,'')
+					exptmp = exptmp.gsub(/@.*?\p{blank}?/,'')
+					#exptmp = exptmp.gsub(/@[\p{alnum}_]*?\p{blank}?/,'')
 					exptmp = exptmp.gsub(/\p{blank}+?/,'')
 					exptmp = exptmp.gsub(/͏/,'')
 					if exptmp =~ /チンポモ|ちんぽも|ﾌﾞﾘ|ﾘｭﾘｭﾘｭ|ﾌﾞﾂ|ﾁﾁ|ﾐﾘ|([うおあｕｏａ]){3,}?|[!！]{10,}/ and m[:created] > DEFINED_TIME and !m.retweet? then
