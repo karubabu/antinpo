@@ -13,7 +13,7 @@ Plugin.create(:antinpo) do
                     exptmp = exptmp.gsub(/@[a-zA-Z0-9_]*/,'')
                     # 空の()を弾く
                     exptmp = exptmp.gsub(/[\(（][\)）]/,'')
-                    exptmp = exptmp.gsub(/[\(（][\)）]/,'')
+                    exptmp = exptmp.gsub(/(https?|ftp):\/\/[A-Za-z0-9\.]*/,'')
                     # ﾌﾞﾁﾐﾘ系ではなく かつ ちんぽ系である
                     if exptmp !~ /チンポモ|ちんぽも|ﾌﾞﾘ|ﾘｭﾘｭﾘｭ|ﾌﾞﾂ|ﾁﾁ|ﾐﾘ|([うおあｕｏａ]){5,}?|[!！]{10,}/ and
                         exptmp =~ /[ㄘちんぽチンポﾁﾝﾎ]{3,}|[ｔｃｈｉｎｐｏtchinpo]{7,}/ and m[:created] > DEFINED_TIME and !m.retweet? then
