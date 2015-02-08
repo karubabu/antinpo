@@ -8,16 +8,16 @@ Plugin.create(:antinpo) do
 			if m.message.to_me?()
 				if !m.message.from_me?()
 					exptmp = m.message.to_show()
-                    
+
                     # @screen_nameを弾く
 					exptmp = exptmp.gsub(/@[a-zA-Z0-9_]*/,'')
                     # 空の()を弾く
                     exptmp = exptmp.gsub(/[\(（][\)）]/,'')
-                    
+
                     # ﾌﾞﾁﾐﾘ系ではなく かつ ちんぽ系である
-					if exptmp !~ /チンポモ|ちんぽも|ﾌﾞﾘ|ﾘｭﾘｭﾘｭ|ﾌﾞﾂ|ﾁﾁ|ﾐﾘ|([うおあｕｏａ]){3,}?|[!！]{10,}/ and                        
-					   exptmp =~ /ㄘ|ち|ん|ぽ|チ|ン|ポ|ﾁ|ﾝ|ﾎ|ｔ|ｃ|ｈ|ｉ|ｎ|ｐ|ｏ|t|c|h|i|n|p|o/ and m[:created] > DEFINED_TIME and !m.retweet? then
-                           
+					if exptmp !~ /チンポモ|ちんぽも|ﾌﾞﾘ|ﾘｭﾘｭﾘｭ|ﾌﾞﾂ|ﾁﾁ|ﾐﾘ|([うおあｕｏａ]){3,}?|[!！]{10,}/ and
+					   exptmp =~ /ㄘ|ち|ん|ぽ|チ|ン|ポ|ﾁ|ﾝ|ﾎ|[ｔｃｈｉｎｐｏtchinpo]{3,}/ and m[:created] > DEFINED_TIME and !m.retweet? then
+
 				        if exptmp =~ /[ち|チ|ﾁ](\p{blank}*?)[ん|ン|ﾝ](\p{blank}*?)[ぽ|ポ|ﾎﾟ]/ then
                             firstSpaces = $1
                             secondSpaces = $2
@@ -44,11 +44,11 @@ Plugin.create(:antinpo) do
                                            .gsub(/i/, "a").gsub(/ｉ/, "ａ")
                                            .gsub(/p/, "d").gsub(/ｐ/, "ｄ")
                                            .gsub(/o/, "e").gsub(/ｏ/, "ｅ")
-                        end                    
+                        end
                         exptmp = exptmp.gsub(/!|！/,
                                             "!" => "?",
                                             "！" => "？")
-                        
+
                         hatenaLength = 140 - ("@" + m.user.idname + ' ' + exptmp).size
 						Service.primary.post(:message => "#{"@" + m.user.idname + ' ' + exptmp + "？"*rand(hatenaLength)}", :replyto => m)
 						m.message.favorite(true)
