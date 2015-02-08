@@ -16,7 +16,7 @@ Plugin.create(:antinpo) do
 
                     # ﾌﾞﾁﾐﾘ系ではなく かつ ちんぽ系である
 					if exptmp !~ /チンポモ|ちんぽも|ﾌﾞﾘ|ﾘｭﾘｭﾘｭ|ﾌﾞﾂ|ﾁﾁ|ﾐﾘ|([うおあｕｏａ]){3,}?|[!！]{10,}/ and
-					   exptmp =~ /ㄘ|ち|ん|ぽ|チ|ン|ポ|ﾁ|ﾝ|ﾎ|[ｔｃｈｉｎｐｏtchinpo]{3,}/ and m[:created] > DEFINED_TIME and !m.retweet? then
+					   exptmp =~ /ㄘ|ち|ん|ぽ|チ|ン|ポ|ﾁ|ﾝ|ﾎ|[ｔｃｈｉｎｐｏtchinpo]{7,}/ and m[:created] > DEFINED_TIME and !m.retweet? then
 
 				        if exptmp =~ /[ち|チ|ﾁ](\p{blank}*?)[ん|ン|ﾝ](\p{blank}*?)[ぽ|ポ|ﾎﾟ]/ then
                             firstSpaces = $1
