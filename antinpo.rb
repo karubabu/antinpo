@@ -24,6 +24,7 @@ Plugin.create(:antinpo) do
                         end
 
                         exptmp = exptmp.gsub(/[ち|チ|ﾁ]/,
+                        	"ㄘ" => "な" + firstSpaces,
                             "ち" => "な" + firstSpaces,
                             "チ" => "ナ" + firstSpaces,
                             "ﾁ" => "ﾅ" + firstSpaces)
