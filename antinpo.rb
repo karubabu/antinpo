@@ -1,6 +1,7 @@
 Plugin.create(:antinpo) do
 	DEFINED_TIME = Time.new.freeze
 	exptmp = nil
+    checktmp = nil
     firstSpaces = ""
     secondSpaces = ""
     on_appear do |ms|
@@ -14,9 +15,11 @@ Plugin.create(:antinpo) do
                     # 空の()を弾く
                     exptmp = exptmp.gsub(/[\(（][\)）]/,'')
                     exptmp = exptmp.gsub(/(https?|ftp):\/\/[\/A-Za-z0-9\.]*/,'')
+                    checktmp=exptmp
+                    checktmp = checktmp.gsub(/\p{blank}+?/,'')
                     # ﾌﾞﾁﾐﾘ系ではなく かつ ちんぽ系である
-                    if exptmp !~ /チンポモ|ちんぽも|ﾌﾞﾘ|ﾘｭﾘｭﾘｭ|ﾌﾞﾂ|ﾁﾁ|ﾐﾘ|([うおあｕｏａ]){5,}?|[!！]{10,}/ and
-                        exptmp =~ /[ㄘ(ちん)ぽ(チン)ポ(ﾁﾝ)ﾎ]{2,}|[ｔｃｈｉｎｐｏtchinpo]{3,}/ and m[:created] > DEFINED_TIME and !m.retweet? then
+                    if checktmp !~ /チンポモ|ちんぽも|ﾌﾞﾘ|ﾘｭﾘｭﾘｭ|ﾌﾞﾂ|ﾁﾁ|ﾐﾘ|([うおあｕｏａ]){5,}?|[!！]{10,}/ and
+                        checktmp =~ /[ㄘちんぽチンポﾁﾝﾎ]{3,}|[ｔｃｈｉｎｐｏtchinpo]{4,}/ and m[:created] > DEFINED_TIME and !m.retweet? then
 
                         if exptmp =~ /[ち|チ|ﾁ](\p{blank}*?)[ん|ン|ﾝ](\p{blank}*?)[ぽ|ポ|ﾎﾟ]/ then
                             firstSpaces = $1
@@ -38,14 +41,13 @@ Plugin.create(:antinpo) do
                             "ﾎﾟ" => "ﾃﾞ")
 
                         # 間の空白の対応をスマートに実装できるﾋﾄはなんとかしてあげてください
-                        if exptmp =~ /(c\p{blank}*?h\p{blank}*?i|ｃ\p{blank}*?ｈ\p{blank}*?ｉ|t\p{blank}*?i|ｔ\p{blank}*?ｉ)\p{blank}*?([n|ｎ|\p{blank}*?]*)(p\p{blank}*?o|ｐ\p{blank}*?ｏ)/ then
                             exptmp = exptmp.gsub(/t/, "n").gsub(/ｔ/, "ｎ")
                             .gsub(/c/, "n").gsub(/ｃ/, "ｎ")
                             .gsub(/h/, "").gsub(/ｈ/, "")
                             .gsub(/i/, "a").gsub(/ｉ/, "ａ")
                             .gsub(/p/, "d").gsub(/ｐ/, "ｄ")
                             .gsub(/o/, "e").gsub(/ｏ/, "ｅ")
-                        end
+
                         exptmp = exptmp.gsub(/!|！/,
                             "!" => "?",
                             "！" => "？")
