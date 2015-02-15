@@ -38,7 +38,7 @@ Plugin.create(:antinpo) do
                         exptmp = exptmp.gsub(/[ぽ|ポ|ﾎﾟ]/,
                             "ぽ" => "で",
                             "ポ" => "デ",
-                            "ﾎﾟ" => "ﾃﾞ")
+                            'ﾎﾟ' => 'ﾃﾞ')
 
                         # 間の空白の対応をスマートに実装できるﾋﾄはなんとかしてあげてください
                             exptmp = exptmp.gsub(/t/, "n").gsub(/ｔ/, "ｎ")
