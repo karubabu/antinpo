@@ -19,22 +19,17 @@ Plugin.create(:antinpo) do
                     checktmp = checktmp.gsub(/\p{blank}+?/,'')
                     # ﾌﾞﾁﾐﾘ系ではなく かつ ちんぽ系である
                     if checktmp !~ /チンポモ|ちんぽも|ﾌﾞﾘ|ﾘｭﾘｭﾘｭ|ﾌﾞﾂ|ﾁﾁ|ﾐﾘ|([うおあｕｏａ]){5,}?|[!！]{10,}/ and
-                        checktmp =~ /[ㄘちんぽチンポﾁﾝﾎ]{3,}|[ｔｃｉｎｐｏtcinpo]{4,}|(チン|ちん|ﾁﾝ)([^でデﾃﾞ]?)/ and m[:created] > DEFINED_TIME and !m.retweet? then
-
-                        if exptmp =~ /[ち|チ|ﾁ](\p{blank}*?)[ん|ン|ﾝ](\p{blank}*?)[ぽ|ポ|ﾎﾟ]/ then
-                            firstSpaces = $1
-                            secondSpaces = $2
-                        end
+                        checktmp =~ /[ㄘちんぽチンポﾁﾝﾎﾟ]{3,}|[ｔｃｉｎｐｏtcinpo]{4,}|(チン|ちん|ﾁﾝ)([^でデﾃﾞ]?)/ and m[:created] > DEFINED_TIME and !m.retweet? then
 
                         exptmp = exptmp.gsub(/[ち|チ|ﾁ]/,
-                        	"ㄘ" => "な" + firstSpaces,
-                            "ち" => "な" + firstSpaces,
-                            "チ" => "ナ" + firstSpaces,
-                            "ﾁ" => "ﾅ" + firstSpaces)
+                        	"ㄘ" => "な",
+                            "ち" => "な",
+                            "チ" => "ナ",
+                            "ﾁ" => "ﾅ")
                         exptmp = exptmp.gsub(/[ん|ン|ﾝ]/,
-                            "ん" => "ん" + secondSpaces,
-                            "ン" => "ン" + secondSpaces,
-                            "ﾝ" => "ﾝ" + secondSpaces)
+                            "ん" => "ん",
+                            "ン" => "ン",
+                            "ﾝ" => "ﾝ")
                         exptmp = exptmp.gsub(/[ぽ|ポ|ﾎﾟ]/,
                             "ぽ" => "で",
                             "ポ" => "デ",
