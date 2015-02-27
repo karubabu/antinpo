@@ -30,7 +30,7 @@ Plugin.create(:antinpo) do
                             "ん" => "ん",
                             "ン" => "ン",
                             "ﾝ" => "ﾝ")
-                        exptmp = exptmp.gsub(/[ぽ|ポ|ﾎﾟ]/,
+                        exptmp = exptmp.gsub(/[ぽ|ポ|(ﾎﾟ)]/,
                             "ぽ" => "で",
                             "ポ" => "デ",
                             "ﾎﾟ" => "ﾃﾞ")
