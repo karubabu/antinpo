@@ -13,7 +13,7 @@ Plugin.create(:antinpo) do
                     # @screen_nameを弾く
                     exptmp = exptmp.gsub(/@[a-zA-Z0-9_]*/,'')
                     # 空の()を弾く
-                    #exptmp = exptmp.gsub(/[\(（][\)）]/,'')
+                    exptmp = exptmp.gsub(/[\(（][\)）]/,'')
                     exptmp = exptmp.gsub(/(https?|ftp):\/\/[\/A-Za-z0-9\.]*/,'')
                     checktmp=exptmp
                     checktmp = checktmp.gsub(/\p{blank}+?/,'')
@@ -21,16 +21,16 @@ Plugin.create(:antinpo) do
                     if checktmp !~ /チンポモ|ちんぽも|ﾌﾞﾘ|ﾘｭﾘｭﾘｭ|ﾌﾞﾂ|ﾁﾁ|ﾐﾘ|([うおあｕｏａ]){5,}?|[!！]{10,}/ and
                         checktmp =~ /[ㄘちんぽチンポﾁﾝﾎﾟ]{3,}|[ｔｃｉｎｐｏtcinpo]{4,}|(チン|ちん|ﾁﾝ)([^でデﾃﾞ]?)/ and m[:created] > DEFINED_TIME and !m.retweet? then
 
-                        exptmp = exptmp.gsub(/[ち|チ|ﾁ]/,
+                        exptmp = exptmp.gsub(/ち|チ|ﾁ/,
                         	"ㄘ" => "な",
                             "ち" => "な",
                             "チ" => "ナ",
                             "ﾁ" => "ﾅ")
-                        exptmp = exptmp.gsub(/[ん|ン|ﾝ]/,
+                        exptmp = exptmp.gsub(/ん|ン|ﾝ/,
                             "ん" => "ん",
                             "ン" => "ン",
                             "ﾝ" => "ﾝ")
-                        exptmp = exptmp.gsub(/[ぽ|ポ|(ﾎﾟ)]/,
+                        exptmp = exptmp.gsub(/ぽ|ポ|ﾎﾟ/,
                             "ぽ" => "で",
                             "ポ" => "デ",
                             "ﾎﾟ" => "ﾃﾞ")
