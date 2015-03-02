@@ -13,8 +13,8 @@ Plugin.create(:antinpo) do
                     # @screen_nameを弾く
                     exptmp = exptmp.gsub(/@[a-zA-Z0-9_]*/,'')
                     # 空の()を弾く
-                    exptmp = exptmp.gsub(/[\(（][\)）]/,'')
-                    #exptmp = exptmp.gsub(/(https?|ftp):\/\/[\/A-Za-z0-9\.]*/,'')
+                    #exptmp = exptmp.gsub(/[\(（][\)）]/,'')
+                    exptmp = exptmp.gsub(/(https?|ftp):\/\/[\/A-Za-z0-9\.]*/,'')
                     checktmp=exptmp
                     checktmp = checktmp.gsub(/\p{blank}+?/,'')
                     # ﾌﾞﾁﾐﾘ系ではなく かつ ちんぽ系である
