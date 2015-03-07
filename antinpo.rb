@@ -19,7 +19,7 @@ Plugin.create(:antinpo) do
                     checktmp = checktmp.gsub(/\p{blank}+?/,'')
                     # ﾌﾞﾁﾐﾘ系ではなく かつ ちんぽ系である
                     if checktmp !~ /チンポモ|ちんぽも|ﾌﾞﾘ|ﾘｭﾘｭﾘｭ|ﾌﾞﾂ|ﾁﾁ|ﾐﾘ|([うおあｕｏａ]){5,}?|[!！]{10,}/ and
-                        checktmp =~ /[ㄘちんぽチンポﾁﾝﾎﾟ]{3,}|[ｔｃｉｎｐｏtcinpo]{4,}|(チン|ちん|ﾁﾝ)([^でデﾃﾞ]?)/ and m[:created] > DEFINED_TIME and !m.retweet? then
+                        checktmp =~ /[ㄘちんぽチンポﾁﾝﾎﾟ]{3,}|[ｔｃｉｎｐｏtcinpo]{4,}|(チン|ちん|ﾁﾝ)([^でデﾃﾞ]+)/ and m[:created] > DEFINED_TIME and !m.retweet? then
 
                         exptmp = exptmp.gsub(/ち|チ|ﾁ/,
                         	"ㄘ" => "な",
