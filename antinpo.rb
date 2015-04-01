@@ -51,9 +51,9 @@ Plugin.create(:antinpo) do
                         if hatenaLength>20 then
                             hatenaLength=20
                         end
+                        m.message.favorite(true)
                         sleep(("@" + m.user.idname + ' ' + exptmp).size)
                         Service.primary.post(:message => "#{"@" + m.user.idname + ' ' + exptmp + "？"*rand(hatenaLength)}", :replyto => m)
-                        m.message.favorite(true)
                     end
                 end
             end
