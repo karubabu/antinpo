@@ -11,7 +11,7 @@ Plugin.create(:antinpo) do
                exptmp = m.message.to_show()
 
                     # @screen_nameを弾く
-                    exptmp = exptmp.gsub(/@[a-zA-Z0-9_]*/,'')
+                    exptmp = exptmp.gsub(/@[a-zA-Z0-9_]*\p{blank}?/,'')
                     # 空の()を弾く
                     exptmp = exptmp.gsub(/[\(（][\)）]/,'')
                     exptmp = exptmp.gsub(/(https?|ftp):\/\/[\/A-Za-z0-9\.]*/,'')
@@ -51,6 +51,7 @@ Plugin.create(:antinpo) do
                         if hatenaLength>20 then
                             hatenaLength=20
                         end
+                        sleep(("@" + m.user.idname + ' ' + exptmp).size)
                         Service.primary.post(:message => "#{"@" + m.user.idname + ' ' + exptmp + "？"*rand(hatenaLength)}", :replyto => m)
                         m.message.favorite(true)
                     end
