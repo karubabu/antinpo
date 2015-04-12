@@ -14,14 +14,14 @@ Plugin.create(:antinpo) do
                     exptmp = exptmp.gsub(/@[a-zA-Z0-9_]*\p{blank}?/,'')
                     # 空の()を弾く
                     exptmp = exptmp.gsub(/[\(（][\)）]/,'')
-                    exptmp = exptmp.gsub(/(https?|ftp):\/\/[\/A-Za-z0-9\.]*/,'')
+                    exptmp = exptmp.gsub(/(https?|ftp):\/\/[\/A-Za-z0-9\.\p{blank}]*/,'')
                     checktmp=exptmp
                     checktmp = checktmp.gsub(/\p{blank}+?/,'')
                     # ﾌﾞﾁﾐﾘ系ではなく かつ ちんぽ系である
                     if checktmp !~ /チンポモ|ちんぽも|ﾌﾞﾘ|ﾘｭﾘｭﾘｭ|ﾌﾞﾂ|ﾁﾁ|ﾐﾘ|([うおあｕｏａ]){5,}?|[!！]{10,}/ and
                         checktmp =~ /[ㄘちんぽチンポﾁﾝﾎﾟ]{3,}|[ｔｃｉｎｐｏtcinpo]{4,}|(チン|ちん|ﾁﾝ)([^でデﾃﾞ]+)/ and m[:created] > DEFINED_TIME and !m.retweet? then
 
-                        exptmp = exptmp.gsub(/ち|チ|ﾁ/,
+                        exptmp = exptmp.gsub(/ち|チ|ﾁ|ㄘ/,
                         	"ㄘ" => "な",
                             "ち" => "な",
                             "チ" => "ナ",
@@ -51,9 +51,11 @@ Plugin.create(:antinpo) do
                         if hatenaLength>20 then
                             hatenaLength=20
                         end
-                        m.message.favorite(true)
-                        sleep(("@" + m.user.idname + ' ' + exptmp).size)
-                        Service.primary.post(:message => "#{"@" + m.user.idname + ' ' + exptmp + "？"*rand(hatenaLength)}", :replyto => m)
+
+                        Reserver.new(exptmp.size){
+                            m.message.favorite(true)
+                            Service.primary.post(:message => "#{"@" + m.user.idname + ' ' + exptmp + "？"*rand(hatenaLength)}", :replyto => m)
+                        }
                     end
                 end
             end
