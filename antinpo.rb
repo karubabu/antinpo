@@ -1,6 +1,6 @@
 Plugin.create(:antinpo) do
 
-	def delaytweet(tweet,hatenaLength)
+	def delaytweet(m,tweet,hatenaLength)
 		Reserver.new((tweet.size)/2){
 		m.message.favorite(true)
 		Service.primary.post(:message => "#{"@" + m.user.idname + ' ' + tweet + "？"*rand(hatenaLength)}", :replyto => m)
@@ -59,7 +59,7 @@ Plugin.create(:antinpo) do
                         if hatenaLength>20 then
                             hatenaLength=20
                         end
-                        delaytweet(exptmp,hatenaLength)
+                        delaytweet(m,exptmp,hatenaLength)
                     end
                 end
             end
