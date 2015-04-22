@@ -1,8 +1,8 @@
 Plugin.create(:antinpo) do
 
 	def delaytweet(m,tweet,hatenaLength)
+        m.message.favorite(true)
 		Reserver.new((tweet.size)/2){
-		m.message.favorite(true)
 		Service.primary.post(:message => "#{"@" + m.user.idname + ' ' + tweet + "？"*rand(hatenaLength)}", :replyto => m)
 		}
 	end
@@ -27,7 +27,7 @@ Plugin.create(:antinpo) do
                     checktmp = checktmp.gsub(/\p{blank}+?/,'')
                     # ﾌﾞﾁﾐﾘ系ではなく かつ ちんぽ系である
                     if checktmp !~ /チンポモ|ちんぽも|ﾌﾞﾘ|ﾘｭﾘｭﾘｭ|ﾌﾞﾂ|ﾁﾁ|ﾐﾘ|([うおあｕｏａ]){5,}?|[!！]{10,}/ and
-                        checktmp =~ /[ㄘちんぽチンポﾁﾝﾎﾟ]{3,}|[ｔｃｉｎｐｏtcinpo]{4,}|(チン|ちん|ﾁﾝ)([^でデﾃﾞ]+)/ and m[:created] > DEFINED_TIME and !m.retweet? then
+                        checktmp =~ /[ㄘちんぽチンポﾁﾝﾎﾟ]{3,}|[TINPOｔｃｉｎｐｏtcinpo]{4,}|(チン|ちん|ﾁﾝ)([^でデﾃﾞ]+)/ and m[:created] > DEFINED_TIME and !m.retweet? then
 
                         exptmp = exptmp.gsub(/ち|チ|ﾁ|ㄘ/,
                         	"ㄘ" => "な",
@@ -44,12 +44,12 @@ Plugin.create(:antinpo) do
                             "ﾎﾟ" => "ﾃﾞ")
 
                         # 間の空白の対応をスマートに実装できるﾋﾄはなんとかしてあげてください
-                            exptmp = exptmp.gsub(/t/, "n").gsub(/ｔ/, "ｎ")
-                            .gsub(/c/, "n").gsub(/ｃ/, "ｎ")
-                            .gsub(/h/, "").gsub(/ｈ/, "")
-                            .gsub(/i/, "a").gsub(/ｉ/, "ａ")
-                            .gsub(/p/, "d").gsub(/ｐ/, "ｄ")
-                            .gsub(/o/, "e").gsub(/ｏ/, "ｅ")
+                            exptmp = exptmp.gsub(/t/, "n").gsub(/ｔ/, "ｎ").gsub(/T/, "N")
+                            .gsub(/c/, "n").gsub(/ｃ/, "ｎ").gsub(/C/, "N")
+                            .gsub(/h/, "").gsub(/ｈ/, "").gsub(/H/, "")
+                            .gsub(/i/, "a").gsub(/ｉ/, "ａ").gsub(/I/, "A")
+                            .gsub(/p/, "d").gsub(/ｐ/, "ｄ").gsub(/P/, "D")
+                            .gsub(/o/, "e").gsub(/ｏ/, "ｅ").gsub(/O/, "E")
 
                         exptmp = exptmp.gsub(/!|！/,
                             "!" => "?",
