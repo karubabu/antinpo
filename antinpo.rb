@@ -56,7 +56,7 @@ checktmp = nil
 					if checktmp !~ /チンポモ|ちんぽも|ﾌﾞﾘ|ﾘｭﾘｭﾘｭ|ﾌﾞﾂ|ﾁﾁ|ﾐﾘ|([うおあｕｏａ]){5,}?|[!！]{10,}/ and
 						checktmp =~ /[ㄘちんぽチンポﾁﾝﾎﾟ]{3,}|[TINPOｔｃｉｎｐｏtcinpo]{4,}|(チン|ちん|ﾁﾝ)([^でデﾃﾞ]+)/ and m[:created] > DEFINED_TIME and !m.retweet? then
 
-						tinpoConverter(exptmp)
+						exptmp=tinpoConverter(exptmp)
 						delaytweet(m,exptmp,5)
 					end
 				end
