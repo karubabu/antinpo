@@ -6,25 +6,29 @@ checktmp = nil
 
 	def delaytweet(m,tweet,hatenaLength)
 		m.message.favorite(true)
-		Reserver.new((tweet.size)/2){
+		Reserver.new((tweet.size)/2)
+		{
 			Service.primary.post(:message => "#{"@" + m.user.idname + ' ' + tweet + "？"*rand(hatenaLength)}", :replyto => m)
 		}
 	end
 
 	def tinpoConverter(exptmp)
-		exptmp = exptmp.gsub(/ち|チ|ﾁ|ㄘ/,
+		#ほんと誰かいい方法考えて
+		exptmp = exptmp.gsub(/ち|チ|ﾁ|ㄘ|ﾃｨ/,
 			"ㄘ" => "な",
 			"ち" => "な",
 			"チ" => "ナ",
-			"ﾁ" => "ﾅ")
+			"ﾁ" => "ﾅ",
+			"ﾃｨ" => "ﾅｧ")
 		exptmp = exptmp.gsub(/ん|ン|ﾝ/,
 			"ん" => "ん",
 			"ン" => "ン",
 			"ﾝ" => "ﾝ")
-		exptmp = exptmp.gsub(/ぽ|ポ|ﾎﾟ/,
+		exptmp = exptmp.gsub(/ぽ|ポ|ﾎﾟ|ﾎﾟｩ/,
 			"ぽ" => "で",
 			"ポ" => "デ",
-			"ﾎﾟ" => "ﾃﾞ")
+			"ﾎﾟ" => "ﾃﾞ",
+			"ﾎﾟｩ"=>"ﾃﾞｪ")
 		# 間の空白の対応をスマートに実装できるﾋﾄはなんとかしてあげてください
 		exptmp = exptmp.gsub(/t/, "n").gsub(/ｔ/, "ｎ").gsub(/T/, "N")
 		.gsub(/c/, "n").gsub(/ｃ/, "ｎ").gsub(/C/, "N")
