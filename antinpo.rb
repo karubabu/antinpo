@@ -6,8 +6,7 @@ checktmp = nil
 
 	def delaytweet(m,tweet,hatenaLength)
 		m.message.favorite(true)
-		Reserver.new((tweet.size)/2)
-		{
+		Reserver.new((tweet.size)/2){
 			Service.primary.post(:message => "#{"@" + m.user.idname + ' ' + tweet + "？"*rand(hatenaLength)}", :replyto => m)
 		}
 	end
@@ -57,7 +56,7 @@ checktmp = nil
 					checktmp=exptmp
 					checktmp = checktmp.gsub(/\p{blank}+?/,'')
 					# ﾌﾞﾁﾐﾘ系ではなく かつ ちんぽ系である
-					if checktmp !~ /チンポモ|ちんぽも|ﾌﾞﾘ|ﾘｭﾘｭﾘｭ|ﾌﾞﾂ|ﾁﾁ|ﾐﾘ|([うおあｕｏａ]){5,}?|[!！]{10,}/ and
+					if checktmp !~ /チンポモ|ちんぽも|ﾌﾞﾘ|ﾘｭﾘｭﾘｭ|ﾌﾞﾂ|ﾁﾁ|ﾐﾘ|([うおあｕｏａi]){5,}?|[!！]{10,}/ and
 						checktmp =~ /[ㄘちんぽチンポﾁﾝﾎﾟ]{3,}|[TINPOｔｃｉｎｐｏtcinpo]{4,}|(チン|ちん|ﾁﾝ)([^でデﾃﾞ]+)/ and m[:created] > DEFINED_TIME and !m.retweet? then
 
 						exptmp=tinpoConverter(exptmp)
