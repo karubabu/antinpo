@@ -26,8 +26,8 @@ checktmp = nil
 		exptmp= exptmp
 		.gsub(/ぽ/,"で")
 		.gsub(/ポ/,"デ")
-		.gsub(/ﾎﾟ^ｩ/,"ﾃﾞ")
-		.gsub(/ﾎﾟｩ/,"ﾃﾞｪ")
+		.gsub(/ﾎﾟ[^ｩ]/,"ﾃﾞ")
+		#.gsub(/ﾎﾟｩ/,"ﾃﾞｪ")
 		# 間の空白の対応をスマートに実装できるﾋﾄはなんとかしてあげてください
 		exptmp = exptmp.gsub(/t/, "n").gsub(/ｔ/, "ｎ").gsub(/T/, "N")
 		.gsub(/c/, "n").gsub(/ｃ/, "ｎ").gsub(/C/, "N")
