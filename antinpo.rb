@@ -56,8 +56,8 @@ checktmp = nil
 					checktmp=exptmp
 					checktmp = checktmp.gsub(/\p{blank}+?/,'')
 					# ﾌﾞﾁﾐﾘ系ではなく かつ ちんぽ系である
-					if checktmp !~ /チンポモ|ちんぽも|ﾌﾞﾘ|ﾘｭﾘｭﾘｭ|ﾌﾞﾂ|ﾁﾁ|ﾐﾘ|([うおあｕｏａio]){5,}?|[!！]{10,}/ and
-						checktmp =~ /[ㄘちんぽチンポﾁﾝﾎﾟ]{3,}|[TINPOｔｃｉｎｐｏtcinpo]{4,}|(チン|ちん|ﾁﾝ)([^でデﾃﾞ]+)/ and m[:created] > DEFINED_TIME and !m.retweet? then
+					if checktmp !~ /チンポモ|ちんぽも|ﾌﾞﾘ|ﾘｭﾘｭﾘｭ|ﾌﾞﾂ|ﾁﾁ|ﾐﾘ|([うおあｕｏａioOIAU]){5,}?|[!！]{10,}/ and
+						checktmp =~ /[ㄘちんぽチンポﾁﾝﾎﾟ]{3,}|[TINMPOｔｃｉｎｍｐｏtcinmpo]{4,}|(チン|ちん|ﾁﾝ)([^でデﾃﾞ]+)/ and m[:created] > DEFINED_TIME and !m.retweet? then
 
 						exptmp=tinpoConverter(exptmp)
 						delaytweet(m,exptmp,5)
