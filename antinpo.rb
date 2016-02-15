@@ -25,27 +25,51 @@ checktmp = nil
 		return exptmp
 	end
 
+	def omaenakataka?(m)
+		if m.message.to_me?()
+			if !m.message.from_me?()
+				return true
+			end
+		end
+
+		return false;
+	end
+
+	def zenngi(m)
+		exptmp = m.message.to_show()
+		# @screen_nameを弾く
+		exptmp = exptmp.gsub(/@[0-9a-zA-Z_]+[\s　]*/, '')
+		# 空の()を弾く
+		exptmp = exptmp.gsub(/[\(（][\)）]/,'')
+		exptmp = exptmp.gsub(/(https?|ftp):\/\/[\/A-Za-z0-9\.\p{blank}]*/,'')
+		exptmp = exptmp.gsub(/\p{blank}+?/,'')
+
+		return exptmp;
+	end
+
+	def tinpoCheck(m,str)
+		if str !~ /チンポモ|ちんぽも|ﾌﾞﾘ|ﾘｭﾘｭﾘｭ|ﾌﾞﾂ|ﾁﾁ|ﾐﾘ|ﾌﾞ|([うおあｕｏａioOIAU]){5,}?|[!！]{10,}/ and
+			str =~ /[ㄘちんぽチンポﾁﾝﾎﾟ]{3,}|[TINMPOｔｃｉｎｍｐｏtcinmpo]{4,}|(チン|ちん|ﾁﾝ)([^でデﾃﾞ]+)/ and m[:created] > DEFINED_TIME and !m.retweet? and m.message.to_s !~ /[\(（]@karubabu[\)）]/ then
+			return true
+		end
+
+		return false
+	end
+
 	on_appear do |ms|
 		ms.each do |m|
-			if m.message.to_me?()
-				if !m.message.from_me?()
-					exptmp = m.message.to_show()
-					# @screen_nameを弾く
-					exptmp = exptmp.gsub(/@[0-9a-zA-Z_]+[\s　]*/, '')
-					# 空の()を弾く
-					exptmp = exptmp.gsub(/[\(（][\)）]/,'')
-					exptmp = exptmp.gsub(/(https?|ftp):\/\/[\/A-Za-z0-9\.\p{blank}]*/,'')
-					checktmp=exptmp
-					checktmp = checktmp.gsub(/\p{blank}+?/,'')
-					# ﾌﾞﾁﾐﾘ系ではなく かつ ちんぽ系である
-					if checktmp !~ /チンポモ|ちんぽも|ﾌﾞﾘ|ﾘｭﾘｭﾘｭ|ﾌﾞﾂ|ﾁﾁ|ﾐﾘ|ﾌﾞ|([うおあｕｏａioOIAU]){5,}?|[!！]{10,}/ and
-						checktmp =~ /[ㄘちんぽチンポﾁﾝﾎﾟ]{3,}|[TINMPOｔｃｉｎｍｐｏtcinmpo]{4,}|(チン|ちん|ﾁﾝ)([^でデﾃﾞ]+)/ and m[:created] > DEFINED_TIME and !m.retweet? and m.message.to_s !~ /[\(（]@karubabu[\)）]/ then
+			if omaenakataka?(m)
+				#ちんぽチェック前の整形実質前戯でしょ
+				checktmp = zenngi(m)
 
-						exptmp=tinpoConverter(exptmp)
-						delaytweet(m,exptmp,5)
-					end
+				# ﾌﾞﾁﾐﾘ系ではなく かつ ちんぽ系である
+				if tinpoCheck(m,checktmp)
+					exptmp = tinpoConverter(exptmp)
+					delaytweet(m,exptmp,8)
 				end
+
 			end
 		end
 	end
+
 end
