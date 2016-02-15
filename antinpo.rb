@@ -31,7 +31,7 @@ checktmp = nil
 				if !m.message.from_me?()
 					exptmp = m.message.to_show()
 					# @screen_nameを弾く
-					exptmp = exptmp.gsub(/@[a-zA-Z0-9_]*\p{blank}?/,'')
+					exptmp = exptmp.gsub(/@[0-9a-zA-Z_]+[\s　]*/, '')
 					# 空の()を弾く
 					exptmp = exptmp.gsub(/[\(（][\)）]/,'')
 					exptmp = exptmp.gsub(/(https?|ftp):\/\/[\/A-Za-z0-9\.\p{blank}]*/,'')
