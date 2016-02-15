@@ -64,8 +64,8 @@ checktmp = nil
 
 				# ﾌﾞﾁﾐﾘ系ではなく かつ ちんぽ系である
 				if tinpoCheck(m,checktmp)
-					exptmp = tinpoConverter(exptmp)
-					delaytweet(m,exptmp,8)
+					checktmp = tinpoConverter(checktmp)
+					delaytweet(m,checktmp,8)
 				end
 
 			end
