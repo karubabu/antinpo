@@ -13,33 +13,15 @@ checktmp = nil
 
 	def tinpoConverter(exptmp)
 		#ほんと誰かいい方法考えて
-		exptmp = exptmp.gsub(/ち|チ|ﾁ|ㄘ|ﾃｨ/,
-			"ㄘ" => "な",
-			"ち" => "な",
-			"チ" => "ナ",
-			"ﾁ" => "ﾅ",
-			"ﾃｨ" => "ﾅｧ")
-		exptmp = exptmp.gsub(/ん|ン|ﾝ/,
-			"ん" => "ん",
-			"ン" => "ン",
-			"ﾝ" => "ﾝ")
-		exptmp= exptmp
-		.gsub(/ぽ/,"で")
-		.gsub(/ポ/,"デ")
-		.gsub(/ﾎﾟｩ/,"ﾃﾞｪ")
-		.gsub(/ﾎﾟ/,"ﾃﾞ")
+		exptmp.gsub! /ﾃｨ/, "ﾅｧ"
+		exptmp.tr! "ちチﾁㄘぽポ", "ななナﾅでデ"
+		exptmp.gsub! /ﾎﾟｩ/, "ﾃﾞｪ"
+		exptmp.gsub! /ﾎﾟ/,"ﾃﾞ"
 		# 間の空白の対応をスマートに実装できるﾋﾄはなんとかしてあげてください
-		exptmp = exptmp.gsub(/t/, "n").gsub(/ｔ/, "ｎ").gsub(/T/, "N")
-		.gsub(/c/, "n").gsub(/ｃ/, "ｎ").gsub(/C/, "N")
-		.gsub(/h/, "").gsub(/ｈ/, "").gsub(/H/, "")
-		.gsub(/i/, "a").gsub(/ｉ/, "ａ").gsub(/I/, "A")
-		.gsub(/p/, "d").gsub(/ｐ/, "ｄ").gsub(/P/, "D")
-		.gsub(/o/, "e").gsub(/ｏ/, "ｅ").gsub(/O/, "E")
+		exptmp.tr! "ctinpoCTINPOｃｔｉｎｐｏ", "nnandeNNANDEｎｎａｎｄｅ"
+		exptmp.gsub! /[hHｈ]/, ""
 
-		exptmp = exptmp.gsub(/!|！/,
-		"!" => "?",
-		"！" => "？")
-
+		exptmp.tr! "!！", "?？"
 		return exptmp
 	end
 
