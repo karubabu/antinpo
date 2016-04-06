@@ -14,7 +14,7 @@ checktmp = nil
 	def tinpoConverter(exptmp)
 		#ほんと誰かいい方法考えて
 		exptmp.gsub! /ﾃｨ/, "ﾅｧ"
-		exptmp.tr! "ちチﾁㄘぽポ", "ななナﾅでデ"
+		exptmp.tr! "ちチﾁㄘぽポ", "なナﾅナでデ"
 		exptmp.gsub! /ﾎﾟｩ/, "ﾃﾞｪ"
 		exptmp.gsub! /ﾎﾟ/,"ﾃﾞ"
 		# 間の空白の対応をスマートに実装できるﾋﾄはなんとかしてあげてください
