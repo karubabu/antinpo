@@ -11,7 +11,14 @@ checktmp = nil
 		}
 	end
 
-	def tinpoConverter(exptmp)
+	def tinpoConverter(m)
+		exptmp = m.message.to_show()
+		# @screen_nameを弾く
+		exptmp = exptmp.gsub(/@[0-9a-zA-Z_]+[\s　]*/, '')
+		# 空の()を弾く
+		exptmp = exptmp.gsub(/[\(（][\)）]/,'')
+		exptmp = exptmp.gsub(/(https?|ftp):\/\/[\/A-Za-z0-9\.\p{blank}]*/,'')
+
 		#ほんと誰かいい方法考えて
 		exptmp.gsub! /ﾃｨ/, "ﾅｧ"
 		exptmp.tr! "ちチﾁㄘぽポ", "なナﾅナでデ"
@@ -32,7 +39,7 @@ checktmp = nil
 			end
 		end
 
-		return false;
+		return false
 	end
 
 	def zenngi(m)
@@ -44,7 +51,7 @@ checktmp = nil
 		exptmp = exptmp.gsub(/(https?|ftp):\/\/[\/A-Za-z0-9\.\p{blank}]*/,'')
 		exptmp = exptmp.gsub(/\p{blank}+?/,'')
 
-		return exptmp;
+		return exptmp
 	end
 
 	def tinpoCheck(m,str)
@@ -64,7 +71,7 @@ checktmp = nil
 
 				# ﾌﾞﾁﾐﾘ系ではなく かつ ちんぽ系である
 				if tinpoCheck(m,checktmp)
-					tweet = tinpoConverter(checktmp)
+					tweet = tinpoConverter(m)
 					delaytweet(m,tweet,8)
 				end
 
