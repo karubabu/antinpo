@@ -21,6 +21,7 @@ checktmp = nil
 
 		#ほんと誰かいい方法考えて
 		exptmp.gsub! /ﾃｨ/, "ﾅｧ"
+		exptmp.gsub! /てぃ/, "なぁ"
 		exptmp.tr! "ちチﾁㄘぽポ", "なナﾅナでデ"
 		exptmp.gsub! /ﾎﾟｩ/, "ﾃﾞｪ"
 		exptmp.gsub! /ﾎﾟ/,"ﾃﾞ"
@@ -56,7 +57,7 @@ checktmp = nil
 
 	def tinpoCheck(m,str)
 		if str !~ /チンポモ|ちんぽも|ﾌﾞﾘ|ﾘｭﾘｭﾘｭ|ﾌﾞﾂ|ﾁﾁ|ﾐﾘ|ﾌﾞ|([うおあｕｏａioOIAU]){5,}?|[!！]{10,}/ and
-			str =~ /[ㄘちんぽチンポﾁﾝﾎﾟ]{3,}|[TINMPOｔｃｉｎｍｐｏtcinmpo]{4,}|(チン|ちん|ﾁﾝ)([^でデﾃﾞ]+)/ and m[:created] > DEFINED_TIME and !m.retweet? and m.message.to_s !~ /[\(（]@karubabu[\)）]/ then
+			str =~ /[ㄘちんぽチンポﾁﾝﾎﾟ]{3,}|[TINMPOｔｃｉｎｍｐｏtcinmpo]{4,}|(チン|ちん|ﾁﾝ|てぃ|ﾃｨ)([^でデﾃﾞ]+)/ and m[:created] > DEFINED_TIME and !m.retweet? and m.message.to_s !~ /[\(（]@karubabu[\)）]/ then
 			return true
 		end
 
